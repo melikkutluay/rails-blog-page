@@ -1,0 +1,37 @@
+%html{lang: "tr"}
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{charset: "UTF-8"}/
+    %link#bootstrap-css{href: "//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css", rel: "stylesheet"}/
+    %title= content_for(:page_title, @post.name)
+  %body
+    .col-md-12
+      %header
+        %h1= @post.name
+        %div
+        %p#notice= notice
+        %button= link_to "Back",root_path
+      .col-md-8
+        %section.box_1
+          %article.box-content
+            %p
+            %h4= @post.title
+            %p
+              = @post.content
+          %nav.box-navbar
+            %ul.box-nav
+              %li
+              %li.checked
+              %li
+              %li
+      .col-md-4
+        %section.box_3
+          %section.box-comments
+            %h2 Comment (comment count)
+            %section.comment-view
+              %img.comment-avatar{alt: "", src: ""}/
+              %article.comment
+                %h3 do comment person
+                %h4 when comment to post
+                %p write comment
+
