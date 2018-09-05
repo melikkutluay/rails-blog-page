@@ -1,10 +1,60 @@
-%table
-  %tr
-    %th name
-    %th title
-    %th content
-  - @posts.each do |post|
-    %tr
-      %td= post.name
-      %td= post.title
-      %td= post.content
+%html{lang: "tr"}
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{charset: "utf-8"}/
+    %link#bootstrap-css{href: "//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css", rel: "stylesheet"}/
+    %link{href: "posts.scss", rel: "stylesheet", type: "text/css"}/
+    %script{src: "https://use.fontawesome.com/07b0ce5d10.js"}
+    %title= content_for(:page_title, 'All Posts')
+  %body{style: "padding: 10em 0 10em;"}
+    = render 'layouts/header'
+    .col-md-12
+
+      %p= link_to "Create new",new_post_path
+      .col-md-8
+        %section#blog-section
+          .container
+            .row
+              - @posts.each do |post|
+                .col-md-12
+                  .row
+
+                    .col-md-12
+                      #image.text-center
+
+                      #title.content-title
+                        .text-center
+                          %h3
+                          %li
+                            %td= link_to 'Show Post', post
+                          %td
+                            = link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }
+                            .navbar.navbar-default
+                              %p= post.title
+                            #icon
+                              %span.pull-right
+                                %a{"data-placement" => "left", "data-toggle" => "tooltip", href: "#", title: "Comments"}
+                                %a{"data-placement" => "right", "data-toggle" => "tooltip", href: "#", title: "Loved"}
+
+      .col-md-4
+        .navbar.navbar-default
+          #all_post_info
+            %table
+              %thead
+                %tr
+                  %th
+                    %h4 İd &nbsp;
+                  %th
+                    %h4 Name &nbsp;
+                  %th
+                    %h4 Date
+                  %th
+                    %h4 Title
+              %tbody
+                - @posts.each do |post|
+                  %tr
+                    %td= post.id
+                    %td= post.title
+                    %td= post.created_at
+                    %td= post.title
+                    %td= link_to "Show",post_path(post)

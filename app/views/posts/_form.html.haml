@@ -1,6 +1,27 @@
-= simple_form_for @post do |f|
-  = f.input :name
-  = f.input :title
-  = f.input :content
-  = f.submit
-
+!!!
+%html{lang: "tr"}
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{charset: "UTF-8"}/
+    %meta{content: "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0", name: "viewport"}/
+    %meta{content: "ie=edge", "http-equiv" => "X-UA-Compatible"}/
+    %title Document
+  %body
+    - if @post.errors.any?
+      %h2 This error has be input get empty!
+      %ul
+        - @post.errors.full_messages.each do |msg|
+          %li= msg
+    = form_for @post do |to|
+      %p
+        = to.label :name
+        = to.text_field :name
+      %p
+        = to.label :title
+        = to.text_field :title
+      %p
+        = to.label :content
+        = to.text_field :content
+      %p
+        = to.submit
+%html= link_to "Back",posts_path
